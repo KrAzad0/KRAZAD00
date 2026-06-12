@@ -1,16 +1,16 @@
-## Hi there 👋
+# KRAZAD00 Portfolio
 
-<!--
-**KrAzad0/KRAZAD0** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Static portfolio for Kumar Azad.
 
-Here are some ideas to get you started:
+Built from the June 2026 CV reference with sections for:
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- Research profile
+- Education
+- Certifications
+- Conferences and workshops
+- Research coursework and skills
+- Contact links
+
+Open the site through GitHub Pages after Pages is enabled for this repository:
+
+https://krazad0.github.io/KRAZAD00/
