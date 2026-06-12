@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KRAZAD00 | Kumar Azad Portfolio</title>
+  <meta name="description" content="Portfolio of Kumar Azad, independent researcher in physics, mathematics, AI, and quantum computing.">
+  <style>
+    :root {
+      --ink: #121417;
+      --muted: #5e6875;
+      --paper: #f7f3ed;
+      --panel: #fffaf1;
+      --line: #d9cdbb;
+      --blue: #255a73;
+      --red: #b84a3d;
+      --green: #4e7655;
+      --gold: #b8792b;
+      --shadow: 0 24px 60px rgba(28, 23, 17, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 5%, rgba(184, 74, 61, 0.13), transparent 24rem),
+        radial-gradient(circle at 86% 12%, rgba(37, 90, 115, 0.14), transparent 26rem),
+        linear-gradient(135deg, #f7f3ed 0%, #ede7da 52%, #f8f6ef 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(18, 20, 23, 0.12);
+      background: rgba(247, 243, 237, 0.88);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 70px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: #fffaf1;
+      background: conic-gradient(from 210deg, var(--red), var(--gold), var(--blue), var(--green), var(--red));
+      border-radius: 50%;
+      box-shadow: 0 12px 28px rgba(37, 90, 115, 0.2);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      color: var(--muted);
+      font-size: 0.93rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      background: rgba(18, 20, 23, 0.06);
+    }
+
+    .hero {
+      position: relative;
+      padding: 70px 0 42px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      align-items: center;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      border: 1px solid rgba(18, 20, 23, 0.12);
+      color: var(--blue);
+      background: rgba(255, 250, 241, 0.72);
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    h1 {
+      margin: 22px 0 16px;
+      max-width: 760px;
+      font-size: clamp(3rem, 8vw, 6.6rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .lead {
+      max-width: 720px;
+      color: #38414d;
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-weight: 850;
+      background: var(--ink);
+      color: var(--panel);
+      box-shadow: 0 14px 28px rgba(18, 20, 23, 0.16);
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .portrait-wrap {
+      justify-self: center;
+      width: min(360px, 100%);
+      aspect-ratio: 0.82;
+      padding: 14px;
+      border: 1px solid rgba(18, 20, 23, 0.15);
+      border-radius: 28px;
+      background: linear-gradient(155deg, rgba(255, 250, 241, 0.94), rgba(235, 226, 209, 0.9));
+      box-shadow: var(--shadow);
+      transform: rotate(1.5deg);
+    }
+
+    .portrait {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .quick-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 52px;
+      overflow: hidden;
+      border: 1px solid rgba(18, 20, 23, 0.13);
+      border-radius: 18px;
+      background: rgba(18, 20, 23, 0.13);
+      box-shadow: 0 18px 50px rgba(18, 20, 23, 0.08);
+    }
+
+    .quick {
+      min-height: 118px;
+      padding: 20px;
+      background: rgba(255, 250, 241, 0.78);
+    }
+
+    .quick strong {
+      display: block;
+      font-size: 1.65rem;
+      line-height: 1;
+    }
+
+    .quick span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 58px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 26px;
+      border-top: 2px solid rgba(18, 20, 23, 0.12);
+      padding-top: 22px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .section-note {
+      max-width: 430px;
+      margin: 0;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid rgba(18, 20, 23, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 250, 241, 0.82);
+      box-shadow: 0 12px 30px rgba(18, 20, 23, 0.06);
+    }
+
+    .logo-box {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(18, 20, 23, 0.11);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .logo-box img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .logo-fallback {
+      color: var(--panel);
+      background: var(--blue);
+      font-weight: 900;
+      font-size: 0.85rem;
+    }
+
+    .item h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.25;
+    }
+
+    .item p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .date {
+      color: var(--blue);
+      font-size: 0.9rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 210px;
+      padding: 18px;
+      border: 1px solid rgba(18, 20, 23, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 250, 241, 0.82);
+      box-shadow: 0 12px 30px rgba(18, 20, 23, 0.06);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--panel);
+      background: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .tag.red {
+      background: var(--red);
+    }
+
+    .tag.green {
+      background: var(--green);
+    }
+
+    .tag.gold {
+      background: var(--gold);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      line-height: 1.28;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 9px 12px;
+      border: 1px solid rgba(18, 20, 23, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 250, 241, 0.76);
+      color: #303842;
+      font-weight: 800;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      gap: 18px;
+      padding: 24px;
+      border-radius: 18px;
+      background: var(--ink);
+      color: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel p {
+      color: rgba(255, 250, 241, 0.72);
+    }
+
+    .socials {
+      display: grid;
+      gap: 10px;
+      align-content: center;
+    }
+
+    .socials a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 46px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 250, 241, 0.16);
+      border-radius: 999px;
+      color: var(--panel);
+      font-weight: 850;
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-wrap {
+        justify-self: start;
+        max-width: 290px;
+      }
+
+      .quick-strip,
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-note {
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .quick-strip,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .item {
+        grid-template-columns: 56px minmax(0, 1fr);
+      }
+
+      .date {
+        grid-column: 2;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="shell nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="KRAZAD00 home">
+        <span class="brand-mark">K</span>
+        <span>KRAZAD00</span>
+      </a>
+      <div class="nav-links">
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#workshops">Workshops</a>
+        <a href="#research">Research</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <span class="eyebrow">Independent Researcher</span>
+          <h1>Kumar Azad</h1>
+          <p class="lead">Physics, mathematics, artificial intelligence, and quantum computing portfolio built around research-led explanation, computational modeling, and clear communication of complex ideas.</p>
+          <div class="hero-actions">
+            <a class="button" href="#research">View Research</a>
+            <a class="button secondary" href="#certifications">See Credentials</a>
+          </div>
+        </div>
+        <div class="portrait-wrap">
+          <img class="portrait" src="https://avatars.githubusercontent.com/u/192669618?v=4" alt="Kumar Azad profile portrait">
+        </div>
+      </div>
+      <div class="shell quick-strip" aria-label="Portfolio highlights">
+        <div class="quick"><strong>4</strong><span>Higher education tracks and academic foundations</span></div>
+        <div class="quick"><strong>20+</strong><span>Quantum, AI, math, and research certifications</span></div>
+        <div class="quick"><strong>6</strong><span>Schools, conferences, workshops, and programs</span></div>
+        <div class="quick"><strong>2026</strong><span>Current portfolio release for KRAZAD00</span></div>
+      </div>
+    </section>
+
+    <section id="profile">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Research Profile</h2>
+          <p class="section-note">A compact academic identity shaped by foundational physics, mathematical structure, quantum algorithms, and independent technical writing.</p>
+        </div>
+        <div class="timeline">
+          <article class="item">
+            <div class="logo-box logo-fallback">KA</div>
+            <div>
+              <h3>Independent Researcher</h3>
+              <p>Develops research-led explanations, computational models, visual media, code, and open knowledge projects across physics, mathematics, AI, and quantum computing.</p>
+            </div>
+            <div class="date">Ongoing</div>
+          </article>
+          <article class="item">
+            <div class="logo-box logo-fallback">H</div>
+            <div>
+              <h3>Hydrogen Atom Inside an Attosecond-Pulse-Filled Torus</h3>
+              <p>Studies a hydrogen atom confined inside a torus filled with attosecond pulses, focusing on topology, quantum-mechanical property calculations, and quantum biology extensions.</p>
+            </div>
+            <div class="date">Ongoing</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Education</h2>
+          <p class="section-note">Listed systematically with institution logos and the academic details visible in the June 2026 CV reference.</p>
+        </div>
+        <div class="timeline">
+          <article class="item">
+            <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=mangalayatan.in&sz=128" alt="Mangalayatan University logo"></div>
+            <div>
+              <h3>Mangalayatan University</h3>
+              <p>M.Sc. in Mathematics, online distance learning; ongoing, with coursework completed through Semester III.</p>
+            </div>
+            <div class="date">Aug 2024 - Aug 2026</div>
+          </article>
+          <article class="item">
+            <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=amity.edu&sz=128" alt="Amity University logo"></div>
+            <div>
+              <h3>Amity University Gurugram</h3>
+              <p>Master of Science in Physics; CGPA 5.27; one year coursework completed and withdrawn.</p>
+            </div>
+            <div class="date">Sep 2024 - Jul 2025</div>
+          </article>
+          <article class="item">
+            <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=iitrpr.ac.in&sz=128" alt="IIT Ropar logo"></div>
+            <div>
+              <h3>Minor in AI by IIT Ropar</h3>
+              <p>Grade 2.3/10; open elective Robotics and Mechanics; project: Build an LLM from scratch.</p>
+            </div>
+            <div class="date">Oct 2024 - Oct 2025</div>
+          </article>
+          <article class="item">
+            <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=srmap.edu.in&sz=128" alt="SRM University AP logo"></div>
+            <div>
+              <h3>SRM University, AP</h3>
+              <p>B.Sc. in Physics; graduated with CGPA 6.67/10.</p>
+            </div>
+            <div class="date">2021 - Sep 2024</div>
+          </article>
+          <article class="item">
+            <div class="logo-box logo-fallback">AF</div>
+            <div>
+              <h3>Academic Foundations</h3>
+              <p>G G S Public School Sec-5B Bokaro, DAV Public School Mathurapur Bhagalpur, and St. Joseph School Sahibganj.</p>
+            </div>
+            <div class="date">Apr 2006 - Mar 2020</div>
+          </article>
+          <article class="item">
+            <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=fiitjee.com&sz=128" alt="FIITJEE logo"></div>
+            <div>
+              <h3>Competitive Exam Preparation</h3>
+              <p>JEE preparation through FIITJEE Bokaro, Jharkhand and Unacademy.</p>
+            </div>
+            <div class="date">Jul 2018 - Sep 2021</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Certifications</h2>
+          <p class="section-note">Quantum computing, AI, mathematical tools, and technical training grouped by issuing platform.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="card-top">
+              <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=128" alt="IBM logo"></div>
+              <span class="tag">IBM Quantum</span>
+            </div>
+            <h3>Quantum Algorithms Suite</h3>
+            <p>Quantum Diagonalization Algorithms, Quantum Machine Learning, Variational Algorithm Design, Fundamentals of Quantum Algorithms, and Qiskit Global Summer School 2025.</p>
+          </article>
+          <article class="card">
+            <div class="card-top">
+              <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=qworld.net&sz=128" alt="QWorld logo"></div>
+              <span class="tag green">QWorld & CDAC</span>
+            </div>
+            <h3>Quantum Computing Programs</h3>
+            <p>QWorld Bronze Level and Quantum Computing CDAC Hyderabad.</p>
+          </article>
+          <article class="card">
+            <div class="card-top">
+              <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=washingtoninstitute.org&sz=128" alt="Washington Institute logo"></div>
+              <span class="tag red">Research</span>
+            </div>
+            <h3>Washington Institute Modules</h3>
+            <p>Quantum Algorithms to Solve PDEs and Quantum Algorithms for Nonlinear Problems.</p>
+          </article>
+          <article class="card">
+            <div class="card-top">
+              <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=coursera.org&sz=128" alt="Coursera logo"></div>
+              <span class="tag gold">Courses</span>
+            </div>
+            <h3>Academic & Technical Courses</h3>
+            <p>MATLAB Fundamentals by MathWorks, Google AI Essentials by Coursera, and Wolfram U daily study group on ChatGPT.</p>
+          </article>
+          <article class="card">
+            <div class="card-top">
+              <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=nptel.ac.in&sz=128" alt="NPTEL logo"></div>
+              <span class="tag">NPTEL</span>
+            </div>
+            <h3>NPTEL Certifications</h3>
+            <p>Algebra II IMSc, Basic Linear Algebra IIT Bombay, Fundamentals of Attosecond Science and Technology IIT Madras/Tirupati, and Coherence and Quantum Entanglement IIT Kanpur.</p>
+          </article>
+          <article class="card">
+            <div class="card-top">
+              <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=ihub-quantum.org&sz=128" alt="I-HUB QTF logo"></div>
+              <span class="tag green">Quantum</span>
+            </div>
+            <h3>Quantum Research Programs</h3>
+            <p>QUCAN QC101 Quantum Computing Course and Introductory Course on Quantum Computing by I-HUB QTF.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="workshops">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Conferences & Workshops</h2>
+          <p class="section-note">Research schools, workshops, and conference-style training attended, organized with logos and dates.</p>
+        </div>
+        <div class="timeline">
+          <article class="item">
+            <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=iitj.ac.in&sz=128" alt="IIT Jodhpur logo"></div>
+            <div>
+              <h3>WiSILS 2024, IIT Jodhpur</h3>
+              <p>Winter School on Intense Laser Science; research experience in positive geometry, scattering amplitudes, and cosmological correlators noted in the CV reference.</p>
+            </div>
+            <div class="date">Dec 2024</div>
+          </article>
+          <article class="item">
+            <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=icts.res.in&sz=128" alt="ICTS-TIFR logo"></div>
+            <div>
+              <h3>ICTS-TIFR Bengaluru</h3>
+              <p>POSGT / research program exposure connected to advanced topics in particle physics and geometry.</p>
+            </div>
+            <div class="date">Feb 2025</div>
+          </article>
+          <article class="item">
+            <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=qucan.in&sz=128" alt="QUCAN logo"></div>
+            <div>
+              <h3>QUCAN QC101 Quantum Computing Course</h3>
+              <p>Seasonal quantum computing coursework and certification track.</p>
+            </div>
+            <div class="date">Dec 2024 - Mar 2025</div>
+          </article>
+          <article class="item">
+            <div class="logo-box"><img src="https://www.google.com/s2/favicons?domain=iitd.ac.in&sz=128" alt="IIT Delhi logo"></div>
+            <div>
+              <h3>Workshop on Quantum Computation</h3>
+              <p>Introductory quantum computation workshop experience listed under quantum research programs.</p>
+            </div>
+            <div class="date">Aug 2024 - Mar 2025</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Research & Courses</h2>
+          <p class="section-note">Coursework and skill areas condensed from the CV into readable research-oriented clusters.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">UG Physics</span>
+            <h3>B.Sc. Physics Coursework</h3>
+            <p>Mathematical Physics, Mechanics, Classical and Modern Physics, thermodynamics, optics, differential equations, quantum mechanics, relativity, electrodynamics, solid state physics, atomic and molecular physics, nuclear and particle physics, statistical physics, and quantum computation.</p>
+          </article>
+          <article class="card">
+            <span class="tag red">PG Physics</span>
+            <h3>M.Sc. Applied Physics Coursework</h3>
+            <p>Classical mechanics, mathematical physics, electronics, quantum mechanics I-II, computational physics, statistical mechanics, condensed matter physics, electrodynamics, and integrated physics labs.</p>
+          </article>
+          <article class="card">
+            <span class="tag green">PG Math</span>
+            <h3>M.Sc. Mathematics Coursework</h3>
+            <p>Abstract algebra, partial differential equations, real analysis, differential geometry, operations research, topology, complex analysis, numerical methods, advanced linear algebra, research methodology, functional analysis, mathematical methods, and measure theory.</p>
+          </article>
+        </div>
+        <div class="skills" style="margin-top: 22px;">
+          <span class="chip">Excel</span>
+          <span class="chip">Origin</span>
+          <span class="chip">MATLAB</span>
+          <span class="chip">Mathematica</span>
+          <span class="chip">Python</span>
+          <span class="chip">Quantum Computing</span>
+          <span class="chip">AI</span>
+          <span class="chip">Mathematical Modeling</span>
+          <span class="chip">Technical Writing</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="shell">
+        <div class="contact-panel">
+          <div>
+            <h2>Open to research conversations.</h2>
+            <p>Portfolio for KRAZAD00, built from the June 2026 CV reference and structured for education, certifications, workshops, research, and technical skills.</p>
+          </div>
+          <div class="socials">
+            <a href="https://github.com/KrAzad0" target="_blank" rel="noreferrer">GitHub <span>-></span></a>
+            <a href="https://www.linkedin.com/in/kumar-azad-791012298/" target="_blank" rel="noreferrer">LinkedIn <span>-></span></a>
+            <a href="https://www.researchgate.net/profile/Kumar-Azad" target="_blank" rel="noreferrer">ResearchGate <span>-></span></a>
+            <a href="mailto:kumarazad9211p@gmail.com">Email <span>-></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">KRAZAD00 | Kumar Azad | Physics, Mathematics, AI, and Quantum Computing</div>
+  </footer>
+</body>
+</html>
